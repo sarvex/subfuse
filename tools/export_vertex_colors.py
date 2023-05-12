@@ -14,6 +14,5 @@ for d in active_obj.data.attributes['Bake'].data:
 
 data = bytes(data)
 
-f = open("bytes", "wb")
-f.write(zstd.compress(data, 1))
-f.close()
+with open("bytes", "wb") as f:
+    f.write(zstd.compress(data, 1))

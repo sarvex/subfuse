@@ -19,19 +19,15 @@ for item in dir_list:
         with open(f"{path}/{file}_ktx2.{ext}", 'w') as f:
             f.write(gltf.replace(".png", ".ktx2"))
         continue
-    
+
     if ext.lower() != "png":
         continue
     if ext.lower() == "jpg":
         print("jpg images not supported!")
         continue
-    
-    #print(item)
-    if "_normal" in file.lower():
-        fmt = "bc5"
-    else:
-        fmt = "bc7"
 
+    #print(item)
+    fmt = "bc5" if "_normal" in file.lower() else "bc7"
     cmd = [
         "kram", 
         "encode",

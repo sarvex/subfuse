@@ -202,11 +202,11 @@ def join_deselect(active, others, vlayer):
     deselect()
 
 def get_all_ob_in_col_recursive(collection):
-    objects = []
-    for ob in collection.objects:
-        if ob.type != "MESH" or not ob.visible_get():
-            continue
-        objects.append(ob)
+    objects = [
+        ob
+        for ob in collection.objects
+        if ob.type == "MESH" and ob.visible_get()
+    ]
     for collection in collection.children_recursive:
         for ob in collection.objects:
             if ob.type != "MESH" or not ob.visible_get():
